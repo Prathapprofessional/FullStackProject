@@ -15,13 +15,13 @@ public class TaskController {
         return "Hello World";
     }
 
-    @PostMapping("/api/work")
-    public List<String> createTask(){
-        List<String> users = new ArrayList<>();
-        users.add("Adam");
-        users.add("Bob");
-        users.add("Charles");
-        return users;
-    }
+//    @PostMapping("/api/work")
+//    public List<String> createTask(){
+//        List<String> users = new ArrayList<>();
+//        users.add("Adam");
+//        users.add("Bob");
+//        users.add("Charles");
+//        return users;
+//    }
 
 }
