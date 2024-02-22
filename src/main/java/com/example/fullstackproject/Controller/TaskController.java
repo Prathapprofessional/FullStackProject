@@ -1,7 +1,9 @@
 package com.example.fullstackproject.Controller;
 
+import com.example.fullstackproject.model.Task;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -15,13 +17,9 @@ public class TaskController {
         return "Hello World";
     }
 
-//    @PostMapping("/api/work")
-//    public List<String> createTask(){
-//        List<String> users = new ArrayList<>();
-//        users.add("Adam");
-//        users.add("Bob");
-//        users.add("Charles");
-//        return users;
-//    }
+    @PostMapping("/api/work")
+    public void createTask( @RequestBody Task task){
+        System.out.println(task.getDescription() + "  " + task.isCompleted());
+            }
 
 }
