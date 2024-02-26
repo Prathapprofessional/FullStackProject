@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {TaskService} from "./task.service";
 import { Task } from './task.model';
@@ -11,10 +11,15 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit{
   constructor(private taskService:TaskService) {}
 
   newTask:Task ={description:"",completed:false}
+  tasks:Task[] = [];
+
+  ngOnInit() {
+    this.getAllTasks();
+  }
 
   createTask():void{
     this.taskService.createTask(this.newTask).subscribe((createdTask)=>{
@@ -22,5 +27,11 @@ export class TaskComponent {
 
     })
   }
+  getAllTasks(){
+    this.taskService.getAllTasks().subscribe( (tasks)=>
+      { this.tasks=tasks }
+    )
+  }
+
 
 }
