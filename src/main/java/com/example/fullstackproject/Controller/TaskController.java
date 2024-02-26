@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class TaskController {
+
     @Autowired
     private TaskRepository taskRepository;
     @GetMapping("/hello")
@@ -20,7 +21,7 @@ public class TaskController {
         return "Hello World";
     }
 
-    @PostMapping("/api/work")
+    @PostMapping("/api/tasks")
     public Task createTask( @RequestBody Task task){
         //System.out.println(task.getDescription() + "  " + task.isCompleted());
         taskRepository.save(task);
