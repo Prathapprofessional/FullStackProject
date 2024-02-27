@@ -32,4 +32,13 @@ public class TaskController {
     {
         return taskRepository.findAll();
     }
+
+    @PutMapping("/{id}")
+    public Task updateTasks(@PathVariable Long id,@RequestBody Task task){
+
+        task.setId(id);
+        return taskRepository.save(task);
+    }
+
+
 }
