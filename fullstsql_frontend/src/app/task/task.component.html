@@ -23,19 +23,31 @@
                 <p> {{task.description}}</p>
               </div>
               <div class ="col-5">
-                  EDIT | DELETE
+                <button class="btn btn-light" (click)="editTask(task)">Edit</button>
               </div>
 
             </div>
           </li>
         </ul>
       </ng-template>
+
+    <div class="col-5">
+      <div *ngIf="editingTask">
+        <form (ngSubmit)="updateTask()" > <label for="editTaskDescription">Edit Task :</label>
+        <div class ="form-group"> <input type="text"
+                                         [(ngModel)]="updatedTask.description"
+                                         name ="UpdateTaskDescription"
+                                         class="form-control"
+                                         id="editTaskDescription" ></div>
+          <div class ="form-group mt-3">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
     </div>
   </form>
 </div>
-
-
-
-
-
-

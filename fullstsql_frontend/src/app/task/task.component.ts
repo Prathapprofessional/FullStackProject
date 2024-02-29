@@ -14,8 +14,10 @@ import {FormsModule} from "@angular/forms";
 export class TaskComponent implements OnInit{
   constructor(private taskService:TaskService) {}
 
-  newTask:Task ={description:"",completed:false}
+  newTask:Task ={description:"",completed:false};
   tasks:Task[] = [];
+  editingTask:Task|null=null;
+  updatedTask:Task={description:"",completed:false};
 
   ngOnInit() {
     this.getAllTasks();
@@ -32,6 +34,27 @@ export class TaskComponent implements OnInit{
       { this.tasks=tasks }
     )
   }
+  editTask(task:Task){
+    this.editingTask=task;
+    this.updatedTask={...task}; }
+  updateTask() {
+    if (this.editingTask){
+      this.taskService.updateTasks(this.editingTask.id!, this.updatedTask).subscribe(
+        (result)=>{
+          const  index =this.tasks.findIndex(
+            (task)=>task.id== this.editingTask!.id )
+        if(index != -1){
+          this.tasks[index]=result;
+          this.cancelEdit();
+        }
+        }
+      )
+    }
+  }
 
+  cancelEdit(){
+    this.editingTask=null;
+    this.updatedTask = {description:"",completed:false};
+  }
 
 }

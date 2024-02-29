@@ -18,4 +18,10 @@ export class TaskService {
   getAllTasks():Observable<Task[]>{
     return this.httpClient.get<Task[]>(this.apiUrl);
   }
+
+  updateTasks(taskId:number, updatedTask:Task):Observable<Task>{
+    return this.httpClient.put<Task>(this.apiUrl+'/'+taskId,updatedTask)
+  }
+
+
 }
