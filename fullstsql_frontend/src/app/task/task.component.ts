@@ -58,4 +58,17 @@ export class TaskComponent implements OnInit{
     this.updatedTask = {description:"",completed:false};
   }
 
+  deleteTask(taskId:any){
+
+    if (confirm('Are you sure to delete the data')) {
+      this.taskService.deleteTask(taskId)
+        .subscribe(() => {
+          this.tasks = this.tasks.filter((task) => task.id != taskId)
+          if (this.editingTask && this.editingTask.id == taskId) {
+            this.cancelEdit();
+          }
+        })
+    }
+  }
+
 }

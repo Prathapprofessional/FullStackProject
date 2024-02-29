@@ -23,5 +23,8 @@ export class TaskService {
     return this.httpClient.put<Task>(this.apiUrl+'/'+taskId,updatedTask)
   }
 
+  deleteTask(taskId:number){
+    return this.httpClient.delete(this.apiUrl+'/'+taskId)
+  }
 
 }
