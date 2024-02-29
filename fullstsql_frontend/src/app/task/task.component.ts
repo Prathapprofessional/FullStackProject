@@ -26,6 +26,7 @@ export class TaskComponent implements OnInit{
   createTask():void{
     this.taskService.createTask(this.newTask).subscribe((createdTask)=>{
       this.newTask ={description:"",completed:false}; //resetting task to normal
+    this.tasks.push(createdTask);
 
     })
   }
