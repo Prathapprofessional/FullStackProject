@@ -1,0 +1,4 @@
+*.html linguist-language=Java
+*.css linguist-language=Java
+*.js linguist-language=Java
+src/main/resources/** linguist-vendored
